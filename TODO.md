@@ -1,0 +1,32 @@
+- [x] CodePush update Progress screen
+- [x] Authentication
+  - [x] Signup with email only
+  - [x] Check local for token and authenticate
+- [ ] Home Screen bottom tab navigation setup
+  - [ ] Home
+    - [ ] Show the current active participating event(wedding)
+    - [ ] Show option to scan QR to participate
+    - [ ] opening current event switches the nav layout to stack
+      - [ ] Shows the active list of assets uploaded
+      - [ ] can add media via picking files from local storage
+      - [ ] can directly use the inApp camera to make assets and upload them
+      - [ ] can exit the participating event
+      - [ ] shows the event participation qr on device for easy invite
+    - [ ] Shows the option to host an event
+      - [ ] Asks for event details, time of occurrence, durations, estimated participants list, venue, hosts details
+  - [ ] profile
+  - [ ] camera
+  - [ ] past weddings????
+- [ ] Joining a Session
+  - [ ] QR scanner implementation
+  - [ ] Entering a code
+  - [ ] View available assets
+- [ ] Image/Video Upload to server
+  - [ ] File Picker implementation
+  - [ ] Single Image/Video Upload
+  - [ ] Bulk image/Video upload
+  - [ ] image/Video upload in background\
+- [ ] Manage self uploaded assets
+- [ ] View historical data on participations
+- [ ] Profile screen
+  - [ ] update self details
