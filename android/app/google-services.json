@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "914564530685",
+    "project_id": "wedcam-a15b3",
+    "storage_bucket": "wedcam-a15b3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:914564530685:android:e9b5c527902c66f68b5994",
+        "android_client_info": {
+          "package_name": "com.nwrade.wedcam"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCQiq2Afrm-ngt1gJVEoZcvxcPjB1F-4Uk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

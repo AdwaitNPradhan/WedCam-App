@@ -1,9 +1,8 @@
 {
     // autosort imports
     "editor.codeActionsOnSave": {
-        "source.organizeImports": true,
-        "source.fixAll.eslint": true
-
+        "source.organizeImports": "explicit",
+        "source.fixAll.eslint": "explicit"
     },
     // format on save
     "editor.formatOnSave": true,

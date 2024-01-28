@@ -1,11 +1,15 @@
+import {createStackNavigator} from '@react-navigation/stack';
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet} from 'react-native';
+import SignIn from '../screens/SignIn';
+
+const Stack = createStackNavigator();
 
 const AuthNavigator = () => {
   return (
-    <View>
-      <Text>AuthNavigator</Text>
-    </View>
+    <Stack.Navigator screenOptions={{headerShown: false}}>
+      <Stack.Screen name="SignIn" component={SignIn} />
+    </Stack.Navigator>
   );
 };
 

@@ -23,11 +23,14 @@ class MainApplication : Application(), ReactApplication {
               // add(MyReactNativePackage())
             }
 
-        override fun getJSMainModuleName(): String = "index"
-        override fun getJSBundleFile(): String = CodePush.getJSBundleFile();
+          override fun getJSMainModuleName(): String = "index"
+         
+          override fun getJSBundleFile(): String? {
+              return CodePush.getJSBundleFile()
+          }
 
 
-        override fun getUseDeveloperSupport(): Boolean = BuildConfig.DEBUG
+          override fun getUseDeveloperSupport(): Boolean = BuildConfig.DEBUG
 
         override val isNewArchEnabled: Boolean = BuildConfig.IS_NEW_ARCHITECTURE_ENABLED
         override val isHermesEnabled: Boolean = BuildConfig.IS_HERMES_ENABLED

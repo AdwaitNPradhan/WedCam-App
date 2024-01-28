@@ -1,5 +1,4 @@
 <resources>
     <string name="app_name">WedCam</string>
     <string moduleConfig="true" name="CodePushDeploymentKey">f5ozpFE9tWRAhMJnu5eL9hq4EJbKAN1jMKJm5</string>
-
 </resources>
