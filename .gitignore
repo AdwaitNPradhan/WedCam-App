@@ -64,3 +64,11 @@ yarn-error.log
 
 # testing
 /coverage
+node_modules
+vendor
+android/app/build
+android/.gradle
+ios/build
+ios/Pods
+android/local.properties
+android/build
