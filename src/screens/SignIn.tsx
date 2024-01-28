@@ -7,21 +7,16 @@ import Typography from '../components/Customs/Typography';
 import Row from '../components/Wrappers/Row';
 import {Colors} from '../constants/colors';
 import {Fonts} from '../constants/fonts';
-import {setIsLoggedIn} from '../store/appSlice';
+import useAuthAPI from '../hooks/useAuthAPI';
 
 const SignIn = () => {
-  const [isLoading, setIsLoading] = useState(false);
   const [email, setEmail] = useState('');
   const dispatch = useDispatch();
+  const {isLoading, Login} = useAuthAPI();
   const onContinuePress = async () => {
     if (!email) return;
-    setIsLoading(true);
     console.log('Continue Pressed');
-    setTimeout(() => {
-      console.log('Continue Pressed');
-      setIsLoading(false);
-      dispatch(setIsLoggedIn({isLoggedIn: true}));
-    }, 2000);
+    await Login(email);
   };
   return (
     <View style={styles.container}>

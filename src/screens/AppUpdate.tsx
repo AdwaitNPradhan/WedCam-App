@@ -1,8 +1,11 @@
 import React, {useEffect} from 'react';
 import {ActivityIndicator, StyleSheet, View} from 'react-native';
+import APIClient, {AuthAPIClient} from '../api/axios.config';
 import Typography from '../components/Customs/Typography';
 import {Colors} from '../constants/colors';
 import {Fonts} from '../constants/fonts';
+import useAuthAPI from '../hooks/useAuthAPI';
+import useEncStore from '../hooks/useEncStore';
 
 const AppUpdate = ({
   statusText = 'Starting...',
@@ -15,16 +18,30 @@ const AppUpdate = ({
   updateCheckComplete: boolean;
   switchToApp: (val: boolean) => void;
 }) => {
+  const {GetItem, Clear} = useEncStore();
+  const {GetProfile} = useAuthAPI();
+
   const CheckLocalUser = async () => {
     setStatusText('Checking for login');
+    const token = await GetItem('wedcam-token');
+    if (!token) {
+      setStatusText('No login found');
+      switchToApp(true);
+      return;
+    }
+    setStatusText('Login found');
+    console.log('adf', token);
+    APIClient.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+    AuthAPIClient.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+    setStatusText('Authenticating');
+    const user = await GetProfile();
     setTimeout(() => {
-      setStatusText('Authenticating');
-      setTimeout(() => {
-        setStatusText('Authenticated');
-        setTimeout(() => {
-          switchToApp(true);
-        }, 200);
-      }, 400);
+      if (!user) {
+        setStatusText('Login failed');
+      } else {
+        setStatusText('Login success');
+      }
+      switchToApp(true);
     }, 400);
   };
 
