@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import {StyleSheet, View} from 'react-native';
-import {useDispatch} from 'react-redux';
 import Button from '../components/Buttons/Button';
 import TextInputField from '../components/Customs/TextInputField';
 import Typography from '../components/Customs/Typography';
@@ -11,7 +10,6 @@ import useAuthAPI from '../hooks/useAuthAPI';
 
 const SignIn = () => {
   const [email, setEmail] = useState('');
-  const dispatch = useDispatch();
   const {isLoading, Login} = useAuthAPI();
   const onContinuePress = async () => {
     if (!email) return;
@@ -55,6 +53,7 @@ const SignIn = () => {
               placeholder="Your Email here"
               textAlign="center"
               onChangeText={setEmail}
+              autoCapitalize={'none'}
               editable={!isLoading}
             />
           </View>
@@ -69,18 +68,20 @@ const SignIn = () => {
         </View>
       </Row>
       <Row style={styles.row}>
-        <Typography style={[styles.text]}>Made with care by</Typography>
+        <Typography style={[styles.text, {fontSize: 20}]}>
+          Made with care by
+        </Typography>
         <Typography
           style={[
             styles.text,
-            {fontFamily: Fonts.QuickSand.regular, fontSize: 14},
+            {fontFamily: Fonts.QuickSand.regular, fontSize: 16},
           ]}>
           Adwait Narayan Pradhan
         </Typography>
         <Typography
           style={[
             styles.text,
-            {fontFamily: Fonts.QuickSand.regular, fontSize: 14},
+            {fontFamily: Fonts.QuickSand.regular, fontSize: 16},
           ]}>
           Rudrava Mukherjee
         </Typography>

@@ -12,7 +12,7 @@ export default Typography;
 const styles = StyleSheet.create({
   baseTextStyle: {
     color: Colors.black,
-    fontSize: 14,
+    fontSize: 18,
     fontFamily: Fonts.QuickSand.regular,
   },
 });

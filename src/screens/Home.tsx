@@ -1,22 +1,36 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import Typography from '../components/Customs/Typography';
 import Row from '../components/Wrappers/Row';
 import {Colors} from '../constants/colors';
 import {Fonts} from '../constants/fonts';
-import useAuthAPI from '../hooks/useAuthAPI';
+import useEncStore from '../hooks/useEncStore';
+
+const Header = () => {
+  return (
+    <Row>
+      <View
+        style={{
+          justifyContent: 'flex-start',
+          alignItems: 'center',
+          width: '100%',
+        }}>
+        <View>
+          <Typography>MemCam</Typography>
+        </View>
+        <View></View>
+      </View>
+    </Row>
+  );
+};
 
 const Home = () => {
-  const {GetProfile} = useAuthAPI();
-
-  useEffect(() => {
-    console.log('Home Screen');
-    (async () => await GetProfile())();
-  }, []);
+  const {Clear} = useEncStore();
   return (
     <View style={styles.container}>
+      <Header />
       <Row>
-        <Typography>Home</Typography>
+        <Typography onPress={Clear}>Home</Typography>
       </Row>
     </View>
   );
