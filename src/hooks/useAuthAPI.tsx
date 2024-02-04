@@ -41,7 +41,6 @@ const useAuthAPI = () => {
     try {
       setIsLoading(true);
       const response = await getProfile();
-      console.log(response.data);
       if (response.data) {
         dispatch(setUser({user: response.data}));
         dispatch(setIsLoggedIn({isLoggedIn: true}));

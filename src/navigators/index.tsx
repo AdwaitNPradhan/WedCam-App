@@ -2,13 +2,24 @@ import {NavigationContainer} from '@react-navigation/native';
 import React, {useCallback, useEffect, useRef, useState} from 'react';
 import {Animated, StyleSheet} from 'react-native';
 import CodePush from 'react-native-code-push';
+import {PERMISSIONS, requestMultiple} from 'react-native-permissions';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {useSelector} from 'react-redux';
 import AppUpdate from '../screens/AppUpdate';
 import {SelectIsLoggedIn} from '../store/appSlice';
 import AppNavigator from './AppNavigator';
 import AuthNavigator from './AuthNavigator';
-
+const requiredPermissions = [
+  PERMISSIONS.ANDROID.ACCESS_MEDIA_LOCATION,
+  PERMISSIONS.ANDROID.CAMERA,
+  PERMISSIONS.ANDROID.READ_EXTERNAL_STORAGE,
+  PERMISSIONS.ANDROID.READ_MEDIA_AUDIO,
+  PERMISSIONS.ANDROID.READ_MEDIA_IMAGES,
+  PERMISSIONS.ANDROID.READ_MEDIA_VIDEO,
+  PERMISSIONS.ANDROID.READ_MEDIA_VISUAL_USER_SELECTED,
+  PERMISSIONS.ANDROID.RECORD_AUDIO,
+  PERMISSIONS.ANDROID.WRITE_EXTERNAL_STORAGE,
+];
 const MainNavigator = () => {
   const [canMountApp, setCanMountApp] = useState(false);
   const isSignedIn = useSelector(SelectIsLoggedIn);
@@ -80,6 +91,29 @@ const MainNavigator = () => {
     );
   }, [codePushStatusDidChange]);
 
+  const GetPermissions = async () => {
+    requestMultiple(requiredPermissions).then(statuses => {
+      console.log(statuses);
+      if (
+        statuses[PERMISSIONS.ANDROID.ACCESS_MEDIA_LOCATION] === 'granted' &&
+        statuses[PERMISSIONS.ANDROID.CAMERA] === 'granted' &&
+        statuses[PERMISSIONS.ANDROID.READ_MEDIA_AUDIO] === 'granted' &&
+        statuses[PERMISSIONS.ANDROID.READ_MEDIA_IMAGES] === 'granted' &&
+        statuses[PERMISSIONS.ANDROID.READ_MEDIA_VIDEO] === 'granted' &&
+        statuses[PERMISSIONS.ANDROID.READ_MEDIA_VISUAL_USER_SELECTED] ===
+          'granted' &&
+        statuses[PERMISSIONS.ANDROID.RECORD_AUDIO] === 'granted'
+      ) {
+        setCanMountApp(true);
+        return;
+      } else {
+        GetPermissions();
+      }
+    });
+  };
+  useEffect(() => {
+    GetPermissions();
+  }, []);
   // ------------------ CodePush END ----------------------
   console.log('--->', isSignedIn, 'ad');
   return (
@@ -92,7 +126,7 @@ const MainNavigator = () => {
       />
       <NavigationContainer>
         {canMountApp ? (
-          isSignedIn ? (
+          !isSignedIn ? (
             <AppNavigator />
           ) : (
             <AuthNavigator />

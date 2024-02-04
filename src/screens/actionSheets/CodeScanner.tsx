@@ -1,14 +1,14 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 
-const PastEvents = () => {
+const CodeScanner = () => {
   return (
     <View>
-      <Text>PastEvents</Text>
+      <Text>CodeScanner</Text>
     </View>
   );
 };
 
-export default PastEvents;
+export default CodeScanner;
 
 const styles = StyleSheet.create({});

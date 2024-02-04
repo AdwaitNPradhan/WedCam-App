@@ -55,6 +55,7 @@ const SignIn = () => {
               onChangeText={setEmail}
               autoCapitalize={'none'}
               editable={!isLoading}
+              style={{fontSize: 20, fontFamily: Fonts.QuickSand.medium}}
             />
           </View>
           <View style={{marginTop: 20}}>

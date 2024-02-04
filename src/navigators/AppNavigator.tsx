@@ -1,42 +1,43 @@
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {createDrawerNavigator} from '@react-navigation/drawer';
 import {createStackNavigator} from '@react-navigation/stack';
 import {StyleSheet} from 'react-native';
-import {Colors} from '../constants/colors';
-import {Fonts} from '../constants/fonts';
+import Row from '../components/Wrappers/Row';
 import About from '../screens/About';
 import ActiveEvent from '../screens/ActiveEvent';
+import Camera from '../screens/Camera';
 import Development from '../screens/Development';
+import Events from '../screens/Events';
 import Home from '../screens/Home';
-import PastEvents from '../screens/PastEvents';
 import Profile from '../screens/Profile';
 import Settings from '../screens/Settings';
+import Header from './Header';
+import Typography from '../components/Customs/Typography';
 
 const Stack = createStackNavigator();
 
-const Tab = createBottomTabNavigator();
+const Drawer = createDrawerNavigator();
 
 function AppNavigator() {
   return (
-    <Tab.Navigator
+    <Drawer.Navigator
       initialRouteName="HomeStack"
       screenOptions={{
-        headerShown: false,
-        tabBarActiveTintColor: Colors.black,
-        tabBarInactiveTintColor: Colors.grey,
-        tabBarStyle: {
-          height: 70,
-          paddingBottom: 10,
-          paddingTop: 10,
-        },
-        tabBarLabelStyle: {
-          fontSize: 16,
-          fontFamily: Fonts.QuickSand.semiBold,
-        },
-      }}>
-      <Tab.Screen name="HomeStack" component={HomeNavigator} />
-      <Tab.Screen name="EventsStack" component={EventsNavigator} />
-      <Tab.Screen name="SettingsStack" component={SettingsNavigator} />
-    </Tab.Navigator>
+        header: Header,
+        drawerType: 'back',
+        drawerItemStyle: {},
+        drawerActiveTintColor: 'black',
+      }}
+      drawerContent={props => <Row><Typography>{props.state.}</Typography></Row>}>
+      <Drawer.Screen name="Home" component={Home} />
+      <Drawer.Screen name="Events" component={Events} />
+      <Drawer.Screen name="Profile" component={Profile} />
+      <Drawer.Screen name="Settings" component={Settings} />
+      <Drawer.Screen name="About" component={About} />
+      <Drawer.Screen name="Camera" component={Camera} />
+      <Drawer.Screen name="ActionSheets" component={Home} />
+      <Drawer.Screen name="SettingsStack" component={SettingsNavigator} />
+      <Drawer.Screen name="Development" component={Development} />
+    </Drawer.Navigator>
   );
 }
 const HomeNavigator = () => {
@@ -46,15 +47,7 @@ const HomeNavigator = () => {
       screenOptions={{headerShown: false}}>
       <Stack.Screen options={{}} name="Home" component={Home} />
       <Stack.Screen options={{}} name="ActiveEvent" component={ActiveEvent} />
-    </Stack.Navigator>
-  );
-};
-const EventsNavigator = () => {
-  return (
-    <Stack.Navigator
-      initialRouteName="Events"
-      screenOptions={{headerShown: false}}>
-      <Stack.Screen options={{}} name="Events" component={PastEvents} />
+      <Stack.Screen options={{}} name="Events" component={Events} />
     </Stack.Navigator>
   );
 };
@@ -70,7 +63,6 @@ const SettingsNavigator = () => {
     </Stack.Navigator>
   );
 };
-
 export default AppNavigator;
 
 const styles = StyleSheet.create({});
